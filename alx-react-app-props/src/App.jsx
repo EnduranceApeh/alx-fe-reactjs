@@ -14,19 +14,26 @@ import UserContext from './components/UserContext';
 
 function App() {
   const [count, setCount] = useState(0)
-  const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
+
+  const userData = { 
+    name: "Jane Doe", 
+    email: "jane.doe@example.com", 
+    age: "25", 
+    bio: "Loves hiking and photography" 
+  };
 
   return (
     <>
       <WelcomeMessage />
       <Header />
       <UserContext.Provider value={userData}>
-         <ProfilePage userData={userData} />
+         <ProfilePage  />
+          <UserProfile />
       </UserContext.Provider>
      
       <MainContent />
       <Footer />
-      <UserProfile name="Alice" age="25" bio="Loves hiking and photography"/>
+     
     </>
   )
 }
