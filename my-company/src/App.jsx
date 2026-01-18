@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import Navbar from './Navbar'
-import Home from './Home'
-import Services from './Services'
-import About from './About'
-import Contact from './Contact'
+import Navbar from './components/Navbar'
+import Home from './components/Home'
+import Services from './components/Services'
+import About from './components/About'
+import Contact from './components/Contact'
 
 function App() {
  
@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Navbar />
-      
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Services" element={<Services />}></Route>
