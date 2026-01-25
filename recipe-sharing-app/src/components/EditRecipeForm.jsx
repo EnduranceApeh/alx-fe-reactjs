@@ -7,7 +7,8 @@ const EditRecipeForm = ({ recipe }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault()
     updateRecipe();
     setTitle('');
     setDescription('')
