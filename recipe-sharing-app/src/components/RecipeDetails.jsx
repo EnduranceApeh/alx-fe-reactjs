@@ -17,7 +17,7 @@
       <div>
         <h1>{recipe.title}</h1>
         <p>{recipe.description}</p>
-        <DeleteRecipeButton />
+        <DeleteRecipeButton recipeId={recipeId}/>
         <EditRecipeForm recipe={recipe}/>
         {/* Render EditRecipeForm and DeleteRecipeButton here */}
       </div>
