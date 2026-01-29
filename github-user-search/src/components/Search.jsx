@@ -16,6 +16,8 @@ function Search() {
     const data = await fetchUserData(username);
     setUser(data);
 
+    console.log(user)
+
     } catch(error) {
       setError(true)
     } finally {
@@ -38,7 +40,7 @@ function Search() {
       {user && (
         <div>
           <img src={user.avatar_url} alt="" />
-          <h2>{user.name}</h2>
+          <h2>{user.login}</h2>
           <a href={user.html_url}>View profile</a>
         </div>
       )
