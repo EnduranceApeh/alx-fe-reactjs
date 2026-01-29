@@ -4,18 +4,20 @@ import fetchUserData from "../services/githubService";
 function Search() {
   const [username, setUserName] = useState("")
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   async function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
+    setError(false)
     
     try{  
     const data = await fetchUserData(username);
     setUser(data);
 
     } catch(error) {
-      console.log(error)
+      setError(true)
     } finally {
       setIsLoading(false);
     }
@@ -32,6 +34,7 @@ function Search() {
 
 
       {isLoading && <p>Loading....</p>}
+      {error && <p>Looks like we cant find the user</p>}
       {user && (
         <div>
           <img src={user.avatar_url} alt="" />

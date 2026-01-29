@@ -6,7 +6,7 @@ async function fetchUserData(username) {
     return response.data
 
   } catch(error) {
-    console.log(error)
+    return error
   }
 }
 
