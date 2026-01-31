@@ -4,7 +4,7 @@ import fetchUserData from "../services/githubService";
 function Search() {
   const [username, setUserName] = useState("")
   const [location, setLocation] = useState("");
-  const [minCount, setminCount] = useState("")
+  const [minRepos, setminRepos] = useState("")
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
@@ -15,7 +15,7 @@ function Search() {
     setError(false)
 
     try {
-      const data = await fetchUserData(username, location, minCount);
+      const data = await fetchUserData(username, location, minRepos);
       setUsers([...users, ...data.items]);
 
       console.log(user)
@@ -55,7 +55,7 @@ function Search() {
             className="border w-100"
             id="repo-count"
             value={minCount}
-            onChange={(e) => setminCount(e.target.value)}
+            onChange={(e) => setminRepos(e.target.value)}
           />
         </div>
 
