@@ -89,7 +89,7 @@ function Search() {
 
         {error && (
           <p className="text-center text-sm text-red-600">
-            Looks like we can’t find any users
+            Looks like we cant find the user
           </p>
         )}
       </form>
