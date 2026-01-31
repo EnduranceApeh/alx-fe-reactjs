@@ -4,7 +4,7 @@ import fetchUserData from "../services/githubService";
 function Search() {
   const [username, setUserName] = useState("")
   const [location, setLocation] = useState("");
-  const [repoCount, setRepoCount] = useState("")
+  const [minCount, setminCount] = useState("")
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
@@ -15,11 +15,10 @@ function Search() {
     setError(false)
 
     try {
-      const data = await fetchUserData(username, location, repoCount);
+      const data = await fetchUserData(username, location, minCount);
       setUsers([...users, ...data.items]);
 
       console.log(user)
-
     } catch (error) {
       setError(true)
     } finally {
@@ -55,8 +54,8 @@ function Search() {
           <input type="text"
             className="border w-100"
             id="repo-count"
-            value={repoCount}
-            onChange={(e) => setRepoCount(e.target.value)}
+            value={minCount}
+            onChange={(e) => setminCount(e.target.value)}
           />
         </div>
 
@@ -73,8 +72,11 @@ function Search() {
             <div className="my-19 mx-auto w-50" key={user.id}>
             <img src={user.avatar_url} alt="" className="w-50" />
             <h2 className="">{user.login}</h2>
+            <p>Location: {user.location}</p>
+            <p>Number of Repos: {}</p>
             <a href={user.html_url} className="text-blue-600">View profile</a>
-          </div>)
+          </div>
+          )
         })
       )
       }
