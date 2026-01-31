@@ -1,17 +1,16 @@
 import axios from "axios";
 
-const githubApi = axios.create({
-  baseURL: "https://api.github.com",
-});
+async function fetchUserData(username, location, repoCount) {
+  try {
+    const query = `${username}+location:${location}+repos:>${repoCount}`;
+    const url = `https://api.github.com/search/users?q=${query}&per_page=30`;
+    const response = await axios.get(url)
+    console.log(response)
+    return response.data
 
-const fetchUserData = async (username, location, minRepos) => {
-  let query = username || "";
-
-  if (location) query += `+location:${location}`;
-  if (minRepos) query += `+repos:>=${minRepos}`;
-
-  const response = await githubApi.get(`/search/users?q=${query}`);
-  return response.data; // contains items array
-};
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 export default fetchUserData;
