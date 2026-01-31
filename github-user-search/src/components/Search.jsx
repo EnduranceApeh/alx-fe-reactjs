@@ -54,7 +54,7 @@ function Search() {
           <input type="text"
             className="border w-100"
             id="repo-count"
-            value={minCount}
+            value={minRepos}
             onChange={(e) => setminRepos(e.target.value)}
           />
         </div>
