@@ -3,7 +3,6 @@ import Search from "./components/Search"
 function App() {
   return (
     <>
-
       <Routes>
         <Route path="/" element={<Search />}></Route>
       </Routes>
