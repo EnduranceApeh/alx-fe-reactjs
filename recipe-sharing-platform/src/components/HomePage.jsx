@@ -11,7 +11,7 @@ function HomePage() {
   return(
     <>
     <h1 className="text-lg font-bold">Recipe sharing platform</h1>
-      <ul className="flex gap-5 justify-center items-center mt-[60px]">
+      <ul className="flex gap-5 justify-center items-center mt-[60px] rounded-lg">
         {recipes.map((recipe) => {
           return (<li key={recipe.id} className="shadow-lg w-[250px] h-[100px] text-center">
             <img src={recipe.image} alt="" />
