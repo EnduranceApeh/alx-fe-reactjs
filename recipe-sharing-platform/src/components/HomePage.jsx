@@ -8,21 +8,41 @@ function HomePage() {
   useEffect(() => {
     setRecipes(itemsData)
   }, [])
-  return(
+  return (
     <>
-    <h1 className="text-lg font-bold">Recipe sharing platform</h1>
-      <ul className="flex gap-5 justify-center items-center mt-[60px] rounded-lg">
-        {recipes.map((recipe) => {
-          return (<li key={recipe.id} className="shadow-lg w-[250px] h-[100px] text-center">
-            <img src={recipe.image} alt="" />
-            <h2 className="font-bold">{recipe.title}</h2>
-            <Link to={`/recipe/${recipe.id}`} className="text-blue-300 hover:text-blue-500">View Details</Link>
+      <h1 className="text-xl md:text-2xl font-bold text-center">
+        Recipe Sharing Platform
+      </h1>
 
-          </li>)
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10 px-4">
+        {recipes.map((recipe) => {
+          return (
+            <li
+              key={recipe.id}
+              className="shadow-lg rounded-lg overflow-hidden text-center p-3 bg-white"
+            >
+              <img
+                src={recipe.image}
+                alt={recipe.title}
+                className="w-full h-40 object-cover rounded-md"
+              />
+
+              <h2 className="font-bold mt-2 text-sm md:text-base">
+                {recipe.title}
+              </h2>
+
+              <Link
+                to={`/recipe/${recipe.id}`}
+                className="inline-block mt-2 text-blue-400 hover:text-blue-600 text-sm"
+              >
+                View Details
+              </Link>
+            </li>
+          );
         })}
       </ul>
     </>
   )
 }
 
-export default HomePage
+export default HomePage;
