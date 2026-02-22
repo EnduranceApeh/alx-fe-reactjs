@@ -1,33 +1,34 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 import Home from "./pages/Home";
-import Profile from "./components/Profile";
+import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import BlogPost from "./pages/BlogPost";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
 
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
 
-        {/* Protected Route */}
-        <Route
-          path="/profile/*"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/profile/*"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
 
-        {/* Dynamic Route */}
-        <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
 
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
