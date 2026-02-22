@@ -1,112 +1,85 @@
 import { useState } from "react";
 
-function  RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: ""
-  })
+function RegistrationForm() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
 
-  const [errors, setErrors] = useState({})
-
-  function handleChange(e) {
-    const {name, value} = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value
-    }))
-  }
-  
-  function validate() {
+  const validate = () => {
     const newErrors = {};
 
-    if(!FormData.username.trim()) {
+    if (!username.trim()) {
       newErrors.username = "Username is required";
     }
 
-    if (!formData.email.trim()) {
+    if (!email.trim()) {
       newErrors.email = "Email is required";
     }
 
-    if (!formData.password.trim()) {
+    if (!password.trim()) {
       newErrors.password = "Password is required";
     }
 
     return newErrors;
-  }
+  };
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const validationErrors = validate()
+    const validationErrors = validate();
 
-     if (Object.keys(validationErrors).length > 0) {
+    if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
 
-    // simulate API call
-    fetch("https://jsonplaceholder.typicode.com/users", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("User registered:", data);
-      });
+    const formData = { username, email, password };
 
-    setFormData({
-      username: "",
-      email: "",
-      password: "",
-    });
-    
-  }
-  
-  return(
+    console.log("Form Submitted:", formData);
+
+    setUsername("");
+    setEmail("");
+    setPassword("");
+  };
+
+  return (
     <form onSubmit={handleSubmit}>
       <h2>Register</h2>
+
       <div>
-        <label htmlFor="username">User Name</label>
         <input
-         type="text" 
-         name="username" 
-         id="username"
-         value={formData.username}
-         onChange={handleChange}
-         />
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         {errors.username && <p>{errors.username}</p>}
       </div>
+
       <div>
-        <label htmlFor="email">Email</label>
         <input
-         type="email" 
-         name="email" 
-         id="email" 
-         placeholder="example@gmail.com"
-         value={formData.email}
-         onChange={handleChange}
-          />
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         {errors.email && <p>{errors.email}</p>}
       </div>
-       <div>
-        <label htmlFor="password">Password</label>
+
+      <div>
         <input
-         type="password" 
-         name="password" 
-         id="password"
-         value={formData.password}
-         onChange={handleChange}
-          />
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         {errors.password && <p>{errors.password}</p>}
       </div>
 
       <button type="submit">Register</button>
     </form>
-  )
+  );
 }
 
 export default RegistrationForm;
